@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peisia.mapper.PjMapper">
+	<!-- resultType 에 복수형(ArrayList 등)을 적는게 아님. 
+	그냥 dto 단수의 경로를 적어야됨. -->
+	<select id="getPjList" resultType="com.peisia.dto.PjDto">
+		SELECT no,name,content,level,gold,client,vendor
+			,(select success_rate from card_pj_difficulty where pj.level between min_lv and max_lv) as success_rate
+		from pj
+	</select>	
+	<select id="getGuildPjList" resultType="com.peisia.dto.PjDto">
+<!-- 		SELECT * from pj where vendor = '고양이길드' -->
+		SELECT * from pj where vendor = (select guild_name from card_member where id=#{id})
+	</select>	
+	<insert id="addPj">
+		insert into pj (name,content,level,gold,exp) values(#{name},#{content},#{level},#{gold},#{exp})
+	</insert>	
+	<update id="updateGuild">
+<!-- 		update pj set vendor = '고양이길드' where no = #{no} -->
+		update pj set vendor = (select guild_name from card_member where id=#{id}) where no = #{no}
+	</update>	
+	<update id="delPj">
+		delete from pj where no = #{no}
+	</update>
+	
+	<select id="getPj" resultType="com.peisia.dto.PjDto">
+<!-- 		SELECT * from pj where no = #{no} -->
+		SELECT no,name,content,level,gold,client,vendor,exp
+			,(select success_rate from card_pj_difficulty where pj.level between min_lv and max_lv) as success_rate
+		from pj where no = #{no};
+	</select>
+</mapper>

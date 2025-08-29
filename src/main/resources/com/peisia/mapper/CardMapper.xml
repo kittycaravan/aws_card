@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peisia.mapper.CardMapper">
+	<!-- resultType 에 복수형(ArrayList 등)을 적는게 아님. 
+	그냥 dto 단수의 경로를 적어야됨. -->
+	
+<!-- 	곧 없앨 예정. 바꾸고나서 -->
+	<select id="getList" resultType="com.peisia.dto.CardDto">
+		SELECT * from card_my where deployment = 0 and id=#{id}
+	</select>	
+	
+	<select id="getMyCards" resultType="com.peisia.dto.CardDto">
+		SELECT * from card_my
+	</select>
+		
+ 	<!-- XML 매퍼에서 사용할 때는 #{card.필드명} 또는 #{id} 형태로 접근  -->		
+	<insert id="addCard">
+		insert into card_my (job,grade,job_kor_name,id) values (#{card.job},#{card.grade},#{card.job_kor_name},#{id})
+	</insert>
+		
+ 	<!-- 가차 10연차. foreach 사용. 
+ 	객체 리스트 변수명을 collection 속성의 값에 넣음. 
+ 	separator는 sql insert value쪽에 여러개 넣을 때 쓰는 구분자 지정(,를 안쓰는 디비도 있나?)   -->		
+	<insert id="addCard10">
+		insert into card_my (job,grade,job_kor_name,id) values 
+	    <foreach collection="cardList" item="card" separator=",">
+        	(#{card.job}, #{card.grade}, #{card.job_kor_name}, #{id})
+    	</foreach>
+	</insert>	
+	<update id="pjMemberAdd">
+<!-- 		update card_my set deployment = #{pjId} where id = #{id} and no = #{no} -->
+		update card_my set deployment = #{pjId} where no = #{no}
+	</update>
+	<select id="getPjMember" resultType="com.peisia.dto.CardDto">
+		SELECT * from card_my where deployment = #{no}
+	</select>
+	<update id="clearPjMember">
+<!-- 		update card_my set deployment = 0 where id = 'cat' and deployment = #{pjId} -->
+		update card_my set deployment = 0 where deployment = #{pjId}
+	</update>
+
+<!-- 	미사용. 확인 후 삭제예정	 -->
+<!-- 	<update id="updateMyCardDeployment"> -->
+<!-- 		update card_my set deployment = 1 where id = 'cat' and no = #{no} -->
+<!-- 	</update> -->
+
+	<delete id="delCard">
+		delete from card_my where no = #{no}
+	</delete>	
+	
+	<select id="addExp">
+	  	CALL add_exp_by_deployment(#{pjNo}, #{exp})
+	</select>
+
+
+</mapper>

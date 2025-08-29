@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.peisia.mapper.MemberMapper">
+
+	<select id="login" resultType="com.peisia.dto.MemberDto">
+		SELECT * from card_member where id = #{id} and pw = #{pw} and approved = 1
+	</select>	
+		
+	<insert id="reg">
+		<!-- 1. card_member 테이블에 회원 등록 -->
+		insert into card_member (id,pw,guild_name) values (#{id},#{pw},#{guildName})
+	</insert>
+	
+	<insert id="regWealth">
+	    <!-- 2. my_wealth 테이블에도 해당 ID 등록 -->
+	    insert into my_wealth (id) values (#{id})
+	</insert>
+	
+</mapper>
