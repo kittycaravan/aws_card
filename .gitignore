@@ -60,3 +60,6 @@ $RECYCLE.BIN/         # Windows 휴지통 메타폴더
 *.bak                 # 백업 파일
 *.tmp                 # 임시 저장 파일
 
+# === 보안===
+db.properties
+
