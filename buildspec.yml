@@ -52,7 +52,7 @@ phases:
 
 artifacts:
   files:
-    - target/dho4.war
+    - target/card.war
       # Maven 빌드 결과물로 생성된 WAR 파일입니다.
       # target 폴더는 Java에서 빌드 결과물이 저장되는 기본 폴더입니다.
 
