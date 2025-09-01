@@ -21,7 +21,8 @@ fi
 
 # 🚚 WAR 파일 이동
 log "WAR 파일 이동: $WAR_SRC → $WAR_DEST"
-mv $WAR_SRC $WAR_DEST
+#mv $WAR_SRC $WAR_DEST
+sudo cp -f $WAR_SRC $WAR_DEST
 
 # ✅ 배포 완료
 log "WAR 파일 이동 완료. 톰캣이 자동 배포를 시작할 예정입니다."
