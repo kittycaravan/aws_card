@@ -8,7 +8,8 @@ log() {
 # 📦 경로 설정
 WAR_SRC=/home/ec2-user/app/card.war
 TOMCAT_DIR=/opt/tomcat9
-WAR_DEST=$TOMCAT_DIR/webapps/ROOT.war
+#WAR_DEST=$TOMCAT_DIR/webapps/ROOT.war
+WAR_DEST=$TOMCAT_DIR/webapps/card.war
 
 log "배포 스크립트 시작"
 log "기존 파일 정리는 stop.sh에서 처리됨 - ROOT.war, ROOT/, card.war"
