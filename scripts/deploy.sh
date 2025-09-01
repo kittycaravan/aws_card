@@ -11,7 +11,7 @@ TOMCAT_DIR=/opt/tomcat9
 WAR_DEST=$TOMCAT_DIR/webapps/ROOT.war
 
 log "배포 스크립트 시작"
-log "기존 파일 정리는 stop.sh에서 처리됨 - ROOT.war, ROOT/, dho4.war"
+log "기존 파일 정리는 stop.sh에서 처리됨 - ROOT.war, ROOT/, card.war"
 
 # ❌ 파일이 존재하지 않으면 오류 처리
 if [ ! -f "$WAR_SRC" ]; then
