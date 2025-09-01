@@ -6,7 +6,7 @@ log() {
 }
 
 # 📦 경로 설정
-WAR_SRC=/home/ec2-user/app/dho4.war
+WAR_SRC=/home/ec2-user/app/card.war
 TOMCAT_DIR=/opt/tomcat9
 WAR_DEST=$TOMCAT_DIR/webapps/ROOT.war
 
