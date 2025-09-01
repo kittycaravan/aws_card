@@ -10,7 +10,7 @@ os: linux
 # 배포 대상 운영 체제를 명시합니다. (linux 또는 windows)
 
 files:
-  - source: target/dho4.war
+  - source: target/card.war
     # buildspec.yml에서 만든 WAR 파일의 상대 경로입니다 (압축 해제된 기준).
     destination: /home/ec2-user/app
     # EC2 인스턴스 내에서 파일을 배치할 경로입니다.
